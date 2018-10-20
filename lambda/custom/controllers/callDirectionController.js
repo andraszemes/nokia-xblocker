@@ -1,16 +1,14 @@
+const express = require('express')
+const bodyParser = require('body-parser')
+const app = express()
 const NokiaTasCallDirectionApi = require('nokia_tas_call_direction_api');
 
 var defaultClient = NokiaTasCallDirectionApi.ApiClient.instance;
 
-const express = require('express')
-const request = require('request');
-const bodyParser = require('body-parser')
-const digitCaptureRequest = require('../json/digitCaptureRequest.json')
-const app = express()
-
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
+const domain = "http://79257a69.ngrok.io";
 
 // Configure API key authorization: nokia_mn_api_auth
 var nokia_mn_api_auth = defaultClient.authentications['nokia_mn_api_auth']
@@ -22,7 +20,7 @@ exports.subscribe = function(req, res) {
     var CallDirectionSubscription = {
             callDirectionSubscription: {
                 callbackReference: {
-                    notifyURL: "http://e9481228.ngrok.io/subscription/callback"
+                    notifyURL: domain + "/callevent"
                 },
                 filter: {
                     address: [
@@ -31,7 +29,7 @@ exports.subscribe = function(req, res) {
                     criteria: ["CalledNumber"],
                     addressDirection: "Called"
                 },
-                clientCorrelator: "cc12350"
+                clientCorrelator: "cc12390"
             }
         }
     
@@ -62,15 +60,19 @@ exports.delete = function(req, res) {
 
 
 
-exports.callback = app.use(function(req, res) {
-  if(req.body) {
-    console.log(req.body)
-    var notification = req.body.callEventNotification
+exports.callevent = function(req, res) {
+    var data = []
 
-    var resObj = {
+    req.on('data', chunk => {
+      data.push(chunk)
+    });
+    req.on('end', () => {
+      console.log(JSON.parse(data))
+       
+      var resObj = {
         "action": {
           "actionToPerform": "Continue",
-          "displayAddress": "sip:+358480786487@ims8.wirelessfuture.com",
+          //"displayAddress": "sip:+358480786488@ims8.wirelessfuture.com",
           "digitCapture": {
             "digitConfiguration": {
               "maxDigits": 10,
@@ -78,44 +80,25 @@ exports.callback = app.use(function(req, res) {
               "endChar": "#"
             },
             "playingConfiguration": {
-              "playFileLocation": "http://e9481228.ngrok.io/audio.wav",
-
+              "playFileLocation": domain + "/audio.wav"
             },
             "callParticipant": [
-              "sip:+358480786487@ims8.wirelessfuture.com"
+              "sip:+358480786488@ims8.wirelessfuture.com"
             ]
           },
           "playAndCollectInteractionSubscription": {
             "callbackReference": {
-              "notifyURL": "http://e9481228.ngrok.io/callevent/callback"
+              "notifyURL": domain + "/mediaevent"
             }
           }
         }
       }
+      res.json(resObj).send();
+    })
+}
 
-    res.json(resObj).send();
-  }
-})
-
-exports.callevent = app.use(function(req, res) {
-    console.log("Hello world")
-    /*
-
-    var notification = req.body.mediaInteractionNotification
-    var resObj = (actionToPerform) => {
-        return {
-            "action": {
-              "actionToPerform": actionToPerform,
-            }
-        }
-    }
-
-    if(notification.mediaInteractionResult.includes("1")) {
-        console.log("number 1")
-        res.json(resObj("Continue")).send();
-    } 
-    else if(notification.mediaInteractionResult.includes("0")) {
-        console.log("number 0")
-        res.json(resObj("EndCall")).send();
-    }*/
+exports.mediaevent = app.use(function(req, res) {
+    console.log(req.body)
+    console.log("mediaevent")
+    res.sendStatus(200);
 })

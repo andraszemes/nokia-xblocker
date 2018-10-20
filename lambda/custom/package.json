@@ -12,6 +12,8 @@
     "ask-sdk-core": "^2.0.0",
     "ask-sdk-model": "^1.0.0",
     "express": "^4.16.4",
+    "express-validator": "^5.3.0",
+    "mongojs": "^2.6.0",
     "nokia_tas_call_direction_api": "github:andraszemes/nokia_tas_call_direction_api",
     "request": "^2.88.0"
   }

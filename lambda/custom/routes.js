@@ -4,15 +4,15 @@ var calldirection = require('./controllers/callDirectionController.js');
 var users = require('./controllers/userController.js');
 
 // Define the home page route
-router.get('/', users.index);
+/*router.get('/', users.index);
 
 router.post('/users/add', users.add);
 
-router.get('/users/delete/:id', users.delete);
+router.get('/users/delete/:id', users.delete);*/
 
-router.post('/subscription/callback', calldirection.callback);
+router.post('/callevent', calldirection.callevent);
 
-router.post('/callevent/callback', calldirection.callevent);
+router.post('/mediaevent', calldirection.mediaevent);
 
 router.get('/subscription', calldirection.subscribe);
 
