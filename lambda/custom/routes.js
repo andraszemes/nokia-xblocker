@@ -1,11 +1,14 @@
 var express = require('express');
 var router = express.Router();
 var calldirection = require('./controllers/callDirectionController.js');
+var users = require('./controllers/userController.js');
 
 // Define the home page route
-router.get('/', function(req, res) {
-  res.send('home page');
-});
+router.get('/', users.index);
+
+router.post('/users/add', users.add);
+
+router.get('/users/delete/:id', users.delete);
 
 router.post('/subscription/callback', calldirection.callback);
 
