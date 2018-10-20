@@ -11,6 +11,7 @@
   "dependencies": {
     "ask-sdk-core": "^2.0.0",
     "ask-sdk-model": "^1.0.0",
+    "express": "^4.16.4",
     "nokia_tas_call_direction_api": "github:andraszemes/nokia_tas_call_direction_api"
   }
 }

@@ -4,39 +4,21 @@
 const Alexa = require('ask-sdk-core');
 var NokiaTasCallDirectionApi = require('nokia_tas_call_direction_api');
 
-var defaultClient = NokiaTasCallDirectionApi.ApiClient.instance;
+const express = require('express')
+const app = express()
 
-// Configure API key authorization: nokia_mn_api_auth
-var nokia_mn_api_auth = defaultClient.authentications['nokia_mn_api_auth'];
-nokia_mn_api_auth.apiKey = "5a8b14c1a353b4000197972f58762935f12443dd9eb68456a79f688b"
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//nokia_mn_api_auth.apiKeyPrefix['Authorization'] = "Token"
+app.use(require('./routes'));
+app.use(express.static('public'));
 
-var api = new NokiaTasCallDirectionApi.SubscriptionApi()
+var server = app.listen(3000, function () {
 
-//CallDirectionSubscription object that needs to be sent to the Nokia TAS
-var CallDirectionSubscription = {
-        callDirectionSubscription: {
-            callbackReference: {
-                notifyURL: "https://www.example.com/notifyURL"
-            },
-            filter: {
-                address: ["sip:+358480786486@ims8.wirelessfuture.com"],
-                criteria: ["CalledNumber"],
-                addressDirection: "Called"
-            },
-            clientCorrelator: "cc12345"
-        }
-    };
+  var host = server.address().address
+  var port = server.address().port
 
-var callback = function(error, data, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data.callDirectionSubscription.filter.address[0]);
-  }
-};
-api.createSubscription(CallDirectionSubscription, callback);
+  console.log("Example app listening at http://%s:%s", host, port)
+
+})
+
 
 
 
