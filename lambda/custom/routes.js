@@ -9,6 +9,8 @@ router.get('/', function(req, res) {
 
 router.post('/subscription/callback', calldirection.callback);
 
+router.post('/callevent/callback', calldirection.callevent);
+
 router.get('/subscription', calldirection.subscribe);
 
 router.get('/subscription/delete/:id/:addr', calldirection.delete);

@@ -2,7 +2,6 @@
 /* eslint-disable  no-console */
 
 const Alexa = require('ask-sdk-core');
-var NokiaTasCallDirectionApi = require('nokia_tas_call_direction_api');
 
 const express = require('express')
 const app = express()
