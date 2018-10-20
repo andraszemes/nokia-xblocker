@@ -19,9 +19,9 @@ router.post('/users/add', users.add);
 
 router.get('/users/delete/:id', users.delete);
 
-router.post('/subscription/callback', calldirection.callback);
+router.post('/callevent', calldirection.callevent);
 
-router.post('/callevent/callback', calldirection.callevent);
+router.post('/mediaevent', calldirection.mediaevent);
 
 router.get('/subscription', calldirection.subscribe);
 
