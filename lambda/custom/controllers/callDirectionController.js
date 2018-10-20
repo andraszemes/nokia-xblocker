@@ -3,7 +3,6 @@ const NokiaTasCallDirectionApi = require('nokia_tas_call_direction_api');
 var defaultClient = NokiaTasCallDirectionApi.ApiClient.instance;
 
 const express = require('express')
-const request = require('request');
 const bodyParser = require('body-parser')
 const digitCaptureRequest = require('../json/digitCaptureRequest.json')
 const app = express()

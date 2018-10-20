@@ -1,0 +1,27 @@
+<% include ../partials/header %>
+<% include ../partials/loggedNav %>
+
+
+<main id="children">
+  
+<% include ../partials/addChildBox %> 
+</main>
+
+<div class="modal" id="removeModal">
+  <div class="modal-background" role="closeModal"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Confirmation</p>
+      <button class="delete" aria-label="close" role="closeModal"></button>
+    </header>
+    <section class="modal-card-body">
+      Are you sure that you want to remove this user?
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button" role="closeModal">Cancel</button>
+      <button class="button is-primary">Confirm</button>
+    </footer>
+  </div>
+</div>
+
+<% include ../partials/footer %>
