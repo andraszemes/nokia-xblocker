@@ -18,14 +18,14 @@ var api = new NokiaTasCallDirectionApi.SubscriptionApi()
 var CallDirectionSubscription = {
         callDirectionSubscription: {
             callbackReference: {
-                notifyURL: "YOUR NOTIFY URL"
+                notifyURL: "https://www.example.com/notifyURL"
             },
             filter: {
                 address: ["sip:+358480786486@ims8.wirelessfuture.com"],
-                criteria: ["CHOOSEN CRITERIA"],
-                addressDirection: "CHOOSEN ADDRESSDIRECTION"
+                criteria: ["CalledNumber"],
+                addressDirection: "Called"
             },
-            clientCorrelator: "YOUR UNIQUE ID e.g.:test123"
+            clientCorrelator: "cc12345"
         }
     };
 
@@ -33,13 +33,10 @@ var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully. Returned data: ' + data);
+    console.log('API called successfully. Returned data: ' + data.callDirectionSubscription.filter.address[0]);
   }
 };
 api.createSubscription(CallDirectionSubscription, callback);
-
-
-console.log("Hello World!");
 
 
 
