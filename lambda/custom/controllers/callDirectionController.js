@@ -99,6 +99,21 @@ exports.callevent = function(req, res) {
 
 exports.mediaevent = app.use(function(req, res) {
     console.log(req.body)
-    console.log("mediaevent")
-    res.sendStatus(200);
+    var digits = req.body.mediaInteractionNotification.mediaInteractionResult
+
+    var actionToPerform = (action) => {
+      res.json({
+        "action": {
+          "actionToPerform": action
+        }
+      }).send()
+    }
+
+    if(digits.includes("0")) {
+      actionToPerform("EndCall")
+    } else if(digits.includes("1")) {
+      actionToPerform("Continue")
+    } else {
+      res.sendStatus(200)
+    }
 })
