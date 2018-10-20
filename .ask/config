@@ -1,0 +1,40 @@
+{
+  "deploy_settings": {
+    "default": {
+      "skill_id": "amzn1.ask.skill.34ec97a8-3b6d-4779-8965-d8a5abbe584d",
+      "was_cloned": false,
+      "merge": {
+        "manifest": {
+          "apis": {
+            "custom": {
+              "endpoint": {
+                "uri": "ask-custom-nokia-xblocker-default"
+              }
+            }
+          }
+        }
+      },
+      "resources": {
+        "manifest": {
+          "eTag": "57a000e43cb2700ef0d3429278caea28"
+        },
+        "interactionModel": {
+          "en-US": {
+            "eTag": "68c6ec32cd3621addb8376f29043d409"
+          }
+        },
+        "lambda": [
+          {
+            "arn": "arn:aws:lambda:us-east-1:641482126351:function:ask-custom-nokia-xblocker-default",
+            "functionName": "ask-custom-nokia-xblocker-default",
+            "awsRegion": "us-east-1",
+            "alexaUsage": [
+              "custom/default"
+            ],
+            "revisionId": "038ef89d-46bd-4a0a-a961-494788350f6e"
+          }
+        ]
+      }
+    }
+  }
+}
