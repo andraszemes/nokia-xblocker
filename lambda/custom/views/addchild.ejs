@@ -1,0 +1,56 @@
+<% include ../partials/header %>
+
+<main id="addChild">
+  <div class="box">
+    <form method="post">
+      <h3 class="title is-3">
+        Add your child
+      </h3>
+      <div class="field">
+        <div class="control has-icons-left has-icons-right">
+          <input name="name" placeholder="Name" type="text" class="input">
+          <span class="icon is-small is-left">
+            <i class="fas fa-user"></i>
+          </span>
+          <span class="icon is-small is-right">
+            <i class="fas fa-exclamation-triangle"></i>
+          </span>
+        </div>
+      </div>
+      <div class="field">
+        <div class="control has-icons-left has-icons-right">
+          <input name="contact" placeholder="Contact" type="text" class="input">
+          <span class="icon is-small is-left">
+            <i class="fas fa-phone"></i>
+          </span>
+          <span class="icon is-small is-right">
+            <i class="fas fa-exclamation-triangle"></i>
+          </span>
+        </div>
+      </div>
+      <div class="field">
+          <div class="control has-icons-left has-icons-right">
+            <input type="date" class="input">
+            <span class="icon is-small is-left">
+              <i class="fas fa-calendar"></i>
+            </span>
+            <span class="icon is-small is-right">
+              <i class="fas fa-exclamation-triangle"></i>
+            </span>
+          </div>
+      </div>
+      <div class="field">
+        <div class="control">
+          <button class="button is-primary" type="submit" name="add">
+            <span class="icon is-small">
+              <i class="fa fa-user-plus"></i>
+            </span>
+            Add
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</main>
+
+<% include ../partials/footer %>
